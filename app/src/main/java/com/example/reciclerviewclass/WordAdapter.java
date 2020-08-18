@@ -14,9 +14,15 @@ import java.util.List;
 //Aquí abajo marca error y se tienen que implementar los 3 métodos, los genera
 public class WordAdapter  extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
     private List<String> wordList;
+    //variable que represente a la interface
+    private PassEleentSelected mListener;
+
+
 //Generé este constructor para que me pida el listado de palabras
-    public WordAdapter(List<String> wordList) {
+    public WordAdapter(List<String> wordList, PassEleentSelected mElementSelected) {
         this.wordList = wordList;
+        this.mListener=mElementSelected;
+
     }
 
     @NonNull
@@ -43,7 +49,7 @@ public class WordAdapter  extends RecyclerView.Adapter<WordAdapter.WordViewHolde
 
     //Clase que vive dentro del ADAPTER
 
-    public class WordViewHolder extends  RecyclerView.ViewHolder{
+    public class WordViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener {
 
         //SI PASARAMOS UNA IMAGEN SE TIENE QUE DECLARAR AQUI
         private TextView textView;
@@ -51,8 +57,24 @@ public class WordAdapter  extends RecyclerView.Adapter<WordAdapter.WordViewHolde
         public WordViewHolder(@NonNull WordItemLayoutBinding mBinding) {
             super(mBinding.getRoot());
             textView=mBinding.wordTv;
+            itemView.setOnClickListener(this);
 
         }
+//metodo implementado después del error al agregar implements
+        @Override
+        public void onClick(View view) {
+            int position = getLayoutPosition();
+            String element = wordList.get(position);
+            mListener.passElement(element);
+
+        }
+    }
+
+
+    //Se genera una interfaz pa mostrar la palabra que presiono
+    public interface  PassEleentSelected{
+
+        void  passElement(String word);
     }
 
 }
