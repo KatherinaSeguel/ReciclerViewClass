@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,7 @@ import com.example.reciclerviewclass.databinding.FragmentFirstBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstFragment extends Fragment {
+public class FirstFragment extends Fragment implements WordAdapter.PassEleentSelected {
     private FragmentFirstBinding binding;
     private RecyclerView mRecycleView;
     private  WordAdapter mwordAdapter;
@@ -31,7 +32,7 @@ public class FirstFragment extends Fragment {
         binding=FragmentFirstBinding.inflate(inflater,container,false);
 
         mRecycleView= binding.myRecycle;
-        mwordAdapter = new WordAdapter(getWordData());
+        mwordAdapter = new WordAdapter(getWordData(),this);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecycleView.setAdapter(mwordAdapter);
 
@@ -61,6 +62,12 @@ public class FirstFragment extends Fragment {
             palabras.add("  WORD   "+ i);
         }
             return palabras;
+
+    }
+
+    @Override
+    public void passElement(String word) {
+        Toast.makeText(getContext(), word, Toast.LENGTH_SHORT).show();
 
     }
 }

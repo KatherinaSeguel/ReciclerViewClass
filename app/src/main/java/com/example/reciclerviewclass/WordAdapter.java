@@ -57,8 +57,7 @@ public class WordAdapter  extends RecyclerView.Adapter<WordAdapter.WordViewHolde
         public WordViewHolder(@NonNull WordItemLayoutBinding mBinding) {
             super(mBinding.getRoot());
             textView=mBinding.wordTv;
-            itemView.setOnClickListener(this);
-
+           itemView.setOnClickListener(this);
         }
 //metodo implementado después del error al agregar implements
         @Override
