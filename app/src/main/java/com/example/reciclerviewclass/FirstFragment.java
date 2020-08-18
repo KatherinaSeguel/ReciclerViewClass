@@ -68,6 +68,6 @@ public class FirstFragment extends Fragment implements WordAdapter.PassEleentSel
     @Override
     public void passElement(String word) {
         Toast.makeText(getContext(), word, Toast.LENGTH_SHORT).show();
-
+//AQUI LE PUEDO PASAR LA PALABRA A UN FRAGMENTO
     }
 }
